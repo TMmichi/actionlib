@@ -159,14 +159,19 @@ SimpleActionServer<ActionSpec>::~SimpleActionServer()
 template<class ActionSpec>
 void SimpleActionServer<ActionSpec>::resetCall()
 {
+  ROS_INFO_STREAM_NAMED("","Reset Called within the action server");
   new_goal_ = false;
   preempt_request_ = false;
   new_goal_preempt_request_ = false;
 
   need_to_terminate_ = false;
 
-  current_goal_;
-  next_goal_;
+  GoalHandle resetGoal;
+
+  current_goal_ = resetGoal;
+  next_goal_ = resetGoal;
+  
+  //ROS_INFO_STREAM_NAMED("","Goal, id: " << current_goal_.getGoalID().id.c_str() << " , stamp: " << current_goal_.getGoalID().stamp.toSec());
 }
 
 template<class ActionSpec>

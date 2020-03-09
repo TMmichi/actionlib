@@ -243,14 +243,15 @@ void ActionServerBase<ActionSpec>::goalCallback(const boost::shared_ptr<const Ac
   boost::shared_ptr<void> handle_tracker((void *)NULL, d);
   (*it).handle_tracker_ = handle_tracker;
 
+
   // check if this goal has already been canceled based on its timestamp
-  if (goal->goal_id.stamp != ros::Time() && goal->goal_id.stamp <= last_cancel_) {
+  /*if (goal->goal_id.stamp != ros::Time() && goal->goal_id.stamp <= last_cancel_) {
     // if it has... just create a GoalHandle for it and setCanceled
     GoalHandle gh(it, this, handle_tracker, guard_);
     gh.setCanceled(
       Result(),
-      "This goal handle was canceled by the action server because its timestamp is before the timestamp of the last cancel request");
-  } else {
+      "Wrong: This goal handle was canceled by the action server because its timestamp is before the timestamp of the last cancel request");
+  }*/ 
     GoalHandle gh = GoalHandle(it, this, handle_tracker, guard_);
 
     // make sure that we unlock before calling the users callback
@@ -258,7 +259,7 @@ void ActionServerBase<ActionSpec>::goalCallback(const boost::shared_ptr<const Ac
 
     // now, we need to create a goal handle and call the user's callback
     goal_callback_(gh);
-  }
+  
 }
 
 template<class ActionSpec>
