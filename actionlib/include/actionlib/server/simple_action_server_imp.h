@@ -155,6 +155,20 @@ SimpleActionServer<ActionSpec>::~SimpleActionServer()
   }
 }
 
+
+template<class ActionSpec>
+void SimpleActionServer<ActionSpec>::resetCall()
+{
+  new_goal_ = false;
+  preempt_request_ = false;
+  new_goal_preempt_request_ = false;
+
+  need_to_terminate_ = false;
+
+  current_goal_;
+  next_goal_;
+}
+
 template<class ActionSpec>
 void SimpleActionServer<ActionSpec>::shutdown()
 {

@@ -125,6 +125,8 @@ public:
 
   ~SimpleActionServer();
 
+  void resetCall();
+
   /**
    * @brief  Accepts a new goal when one is available. The status of this
    * goal is set to active upon acceptance, and the status of any
