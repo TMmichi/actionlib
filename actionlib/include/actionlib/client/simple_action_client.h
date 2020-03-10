@@ -320,7 +320,6 @@ void SimpleActionClient<ActionSpec>::sendGoal(const Goal & goal,
   SimpleFeedbackCallback feedback_cb)
 {
   // Reset the old GoalHandle, so that our callbacks won't get called anymore
-  ROS_INFO_STREAM_NAMED("", "In Actionclient sendgoal");
   gh_.reset();
 
   // Store all the callbacks
